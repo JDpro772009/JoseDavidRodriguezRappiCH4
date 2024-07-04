@@ -48,6 +48,7 @@
 }
 .anim{
     transition: all .3s;
+    width: 18rem;
 }
 .anim:hover{
     transform: translateY(-10px);
