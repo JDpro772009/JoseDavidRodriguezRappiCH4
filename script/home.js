@@ -206,7 +206,7 @@ const data = {
                 <h5 class="card-title">${data.events[i].name}</h5>
                 <p class="card-text">${data.events[i].description}</p>
                 <div class="precio d-flex justify-content-around flex-wrap">
-                  <h4 class="valor">${data.events[i].price}$</h4>
+                  <h4 class="valor">${data.events[i].price}</h4>
                 <a href="./Details.html" class="btn btn-primary">Details</a>
                 </div>
               </div>`
