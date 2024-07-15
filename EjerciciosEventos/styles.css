@@ -1,0 +1,91 @@
+header{
+    text-align: center;
+    padding: 1rem;
+    background-color: aliceblue;
+}
+section{
+    background-color: rgb(244, 244, 252);
+}
+h3{
+    margin: 1rem;
+}
+.valores{
+    width: 40vw;
+    margin: 1rem;
+}
+.valoresP{
+    width: 20vw;
+    margin: 1rem;
+}
+.formulario{
+    display: flex;
+    flex-flow: column wrap;
+    height: 55vh;
+    width: 75vw;
+    justify-content: center;
+
+}
+.medir{
+    width: 10rem;
+    margin-left: 4rem;
+}
+.label{
+    height: 50vh;
+    width: 60px;
+    margin-top: 5px;
+    display:flex;
+    align-items: center;
+    
+}
+.ult{
+    margin-bottom: 20px;
+}
+.tarjetas{
+
+    padding: 1rem;
+    background-color: rgb(231, 240, 249);
+    display: flex;
+    flex-flow: column wrap;
+    height: 70vh;
+    justify-content: center;
+}
+.area{
+    width: 50rem;
+    min-height: 15rem;
+    max-height: 15rem;
+}
+.nombre{
+    width: 50rem;
+    margin-bottom: 15px;
+}
+.tarjetas>button{
+    width: 20rem;
+    margin: 15px;
+}
+.cartas{
+    background-color: rgb(224, 237, 249);
+
+    margin: 10px;
+    border-radius: 10px;
+    padding: 1rem;
+    flex-flow: row wrap;
+    display: flex;
+    gap: 2rem;
+    min-height: 20rem;
+
+}
+.cards{
+    width: 15rem;
+    max-height: 15rem;
+
+}
+.buscar{
+    width: 20rem;
+    margin: 1rem;
+}
+
+.checkboxing{
+    display: flex;
+    flex-direction: row;
+    gap: 3.5rem;
+}
