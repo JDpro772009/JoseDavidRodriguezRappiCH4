@@ -15,13 +15,16 @@ medir.addEventListener("click", ()=>{
 let moneda1 = document.querySelector(".moneda1")
 let moneda2 = document.querySelector(".moneda2")
 
+moneda1.value =  1
+moneda2.value = 5087.240
+
 moneda1.addEventListener("keyup", ()=>{
     let op1 = moneda1.value * 5087.24
-    moneda2.value = op1.toFixed(3)
+    moneda2.value = op1.toFixed(2)
 })
 moneda2.addEventListener("keyup", ()=>{
     let op2 = moneda2.value * 0.00020
-    moneda1.value = op2.toFixed(3)
+    moneda1.value = op2.toFixed(2)
 })
 
 // punto 3
