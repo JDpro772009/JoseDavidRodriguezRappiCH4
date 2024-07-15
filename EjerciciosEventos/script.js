@@ -29,204 +29,130 @@ moneda2.addEventListener("keyup", ()=>{
 
 // punto 3
 
-let idGlobal = 1
+let idGlobal = 1;
+let notas = [];
+let titulo = document.querySelector(".nombre");
+let texto = document.querySelector(".area");
+let guardar = document.querySelector(".guardar");
+let borrar = document.querySelector(".borrar");
 
-let notas = []
-let titulo = document.querySelector(".nombre")
-let texto = document.querySelector(".area")
-let guardar = document.querySelector(".guardar")
-let borrar = document.querySelector(".borrar")
-
-let borrarN = document.querySelector(".borrarN")
-
-let cajaP = document.querySelector(".cartas")
-let palabra = document.createElement("h4")
-if(notas == ""){ 
-    palabra.textContent = "NO HAY CARTAS PARA MOSTRAR"
-    cajaP.appendChild(palabra)
+let cajaP = document.querySelector(".cartas");
+let palabra = document.createElement("h4");
+if (notas.length === 0) { 
+    palabra.textContent = "NO HAY CARTAS PARA MOSTRAR";
+    cajaP.appendChild(palabra);
 }
 
-function crearNota(){
-    let caja = document.querySelector(".cartas")
-    let carta = document.createElement("div")
+function crearNota() {
+    let carta = document.createElement("div");
+    let nuevaNota = {
+        id: idGlobal,
+        titulo: titulo.value,
+        texto: texto.value,
+        realizada: false
+    };
     
-            
-            notas.push({
-                id:idGlobal,
-                titulo:titulo.value,
-                texto:texto.value,
-                realizada: false
-            })
+    notas.push(nuevaNota);
 
-            carta.setAttribute("class", "card text-center cards")
-            carta.innerHTML = `<div class="card-header">
-                               <input onClick="marcarRealizada(${notas[notas.length - 1].id})" type="checkbox" ${notas.realizada? "checked": ""} class:"chekear">
-                              <label for="chekear">${notas[notas.length - 1].titulo}</label>
-                            </div>
-                            <div class="card-body">
-                              <p class="card-text">${notas[notas.length - 1].texto}</p>
-                            </div>
-                              <button type="button" class="btn btn-danger borrarN"  onclick="borrarNota(${notas[notas.length - 1].id})">Borrar</button>`
-                              
-        
-            caja.appendChild(carta)
-            
-        }
+    carta.setAttribute("class", "card text-center cards");
+    carta.innerHTML = `<div class="card-header">
+                       <input onClick="marcarRealizada(${nuevaNota.id})" type="checkbox" ${nuevaNota.realizada ? "checked" : ""} class="chekear">
+                      <label for="chekear">${nuevaNota.titulo}</label>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">${nuevaNota.texto}</p>
+                    </div>
+                      <button type="button" class="btn btn-danger borrarN" onclick="borrarNota(${nuevaNota.id})">Borrar</button>`;
+                      
+    cajaP.appendChild(carta);
 
-let agregarNota = ()=>{
-
-    
-    if(titulo.value=="" ||titulo.value== " " ||titulo.value== "  "){
-        titulo.value = ""
-        titulo.setAttribute("placeholder", "No has agregado nada en este campo")
-        if(texto.value=="" ||texto.value== " " ||texto.value== "  "){
-            texto.value = ""
-            texto.setAttribute("placeholder", "No has agregado nada en este campo")
-        }
-    }else if(texto.value=="" ||texto.value== " " ||texto.value== "  "){
-        texto.value = ""
-        texto.setAttribute("placeholder", "No has agregado nada en este campo")
-    }
-    else{
-
-        crearNota()
-        borrarText()
-        console.log(notas)
-        idGlobal++
-        cajaP.removeChild(palabra)
-        
-    }
-
-       
-}
-function borrarNota(id){
-    notas[id-1] = ""
-    console.log(notas)
-    let cajaP = document.querySelector(".cartas")
-    cajaP.innerHTML = ""
-
-    for(let i = 0; i < notas.length; i++){
-       
-    if(notas[i] == ""){
-        
-    } else{
-        let caja = document.querySelector(".cartas")
-    let carta = document.createElement("div")
-        carta.setAttribute("class", "card text-center cards")
-        carta.innerHTML = `<div class="card-header">
-                          <input onClick="marcarRealizada(${notas[i].id})" type="checkbox" ${notas[i].realizada? "checked": ""} class:"chekear">
-                          <label for="chekear">${notas[i].titulo}</label>
-                        </div>
-                        <div class="card-body">
-                          <p class="card-text">${notas[i].texto}</p>
-                        </div>
-                          <button type="button" class="btn btn-danger borrarN"  onclick="borrarNota(${notas[i].id})">Borrar</button>`
-                          
-    
-        caja.appendChild(carta)
-    }
-
-        
-   }
-
-
-  }
-
-let borrarText = ()=>{
-    titulo.value = ""
-    texto.value = ""
-    console.log(notas)
+    idGlobal++;
+    cajaP.removeChild(palabra);
 }
 
-borrar.addEventListener("click", ()=>{borrarText()})
-guardar.addEventListener("click", ()=>{agregarNota()})
-
-
-let realizada = document.querySelector(".realizadas")
-
-let completas = []
-function marcarRealizada(id){
-    if(notas[id-1].realizada){
-        notas[id-1].realizada = false
-        completas[id-1] = ""
-    }else{
-        notas[id-1].realizada = true
-        completas[id-1] = notas[id-1]
+let agregarNota = () => {
+    if (titulo.value.trim() === "") {
+        titulo.value = "";
+        titulo.setAttribute("placeholder", "No has agregado nada en este campo");
+    } else if (texto.value.trim() === "") {
+        texto.value = "";
+        texto.setAttribute("placeholder", "No has agregado nada en este campo");
+    } else {
+        crearNota();
+        borrarText();
     }
-    console.log(completas)
-    
+};
+
+function borrarNota(id) {
+    notas = notas.filter(note => note.id !== id);
+    applyFilters();
 }
 
-function filtrar(){
-    
-    if(realizada.checked){
-        console.log(completas)
-        cajaP.innerHTML = ""
-    for(let i = 0; i < completas.length; i++){
-       
-        if(completas[i] == ""){
-            console.log("nada")
-        } else{
-            let caja = document.querySelector(".cartas")
-        let carta = document.createElement("div")
-            carta.setAttribute("class", "card text-center cards")
-            carta.innerHTML = `<div class="card-header">
-                              <input onClick="marcarRealizada(${completas[i].id})" type="checkbox" ${completas[i].realizada? "checked": ""} class:"chekear">
-                              <label for="chekear">${completas[i].titulo}</label>
-                            </div>
-                            <div class="card-body">
-                              <p class="card-text">${completas[i].texto}</p>
-                            </div>
-                              <button type="button" class="btn btn-danger borrarN"  onclick="borrarNota(${completas[i].id})">Borrar</button>`
-                              
-        
-            caja.appendChild(carta)
-        }
-    
+let borrarText = () => {
+    titulo.value = "";
+    texto.value = "";
+};
+
+borrar.addEventListener("click", borrarText);
+guardar.addEventListener("click", agregarNota);
+
+function marcarRealizada(id) {
+    let note = notas.find(note => note.id === id);
+    if (note) {
+        note.realizada = !note.realizada;
     }
-
-
-}else{
-    cajaP.innerHTML = ""
-    for(let i = 0; i < notas.length; i++){
-       
-        if(notas[i] == ""){
-            
-        } else{
-            let caja = document.querySelector(".cartas")
-        let carta = document.createElement("div")
-            carta.setAttribute("class", "card text-center cards")
-            carta.innerHTML = `<div class="card-header">
-                              <input onClick="marcarRealizada(${notas[i].id})" type="checkbox" ${notas[i].realizada? "checked": ""} class:"chekear">
-                              <label for="chekear">${notas[i].titulo}</label>
-                            </div>
-                            <div class="card-body">
-                              <p class="card-text">${notas[i].texto}</p>
-                            </div>
-                              <button type="button" class="btn btn-danger borrarN"  onclick="borrarNota(${notas[i].id})">Borrar</button>`
-                              
-        
-            caja.appendChild(carta)
-        }
-    }    
+    applyFilters();
 }
+
+function filterByCompleted(array) {
+    return array.filter(note => note.realizada);
 }
-realizada.addEventListener("click", filtrar)
 
+function filterByText(array, text) {
+    if (!text) return array;
+    return array.filter(note => note.titulo.includes(text) || note.texto.includes(text));
+}
 
-let buscador = document.querySelector(".buscar")
+function applyFilters() {
+    const searchText = document.querySelector(".buscar").value;
+    const filterCompleted = document.querySelector(".realizadas").checked;
 
-let incluyen = []
-
-function buscar(){
-
-    for(let i = 0; i < notas.length;i++){
-        if(notas[i].titulo.includes(buscador.value)){
-            console.log("si esta");
-            console.log(notas[i]);
-        }
+    let filteredNotes = notas;
+    if (filterCompleted) {
+        filteredNotes = filterByCompleted(filteredNotes);
     }
+    filteredNotes = filterByText(filteredNotes, searchText);
 
+    renderNotes(filteredNotes);
 }
 
-buscador.addEventListener("keyup", buscar )
+function renderNotes(notas) {
+    const container = document.querySelector(".cartas");
+    container.innerHTML = '';
+
+    notas.forEach(note => {
+        const noteElement = document.createElement('div');
+        noteElement.className = 'note card text-center cards' + (note.realizada ? ' completed' : '');
+        noteElement.innerHTML = `
+            <div class="card-header">
+                <input onClick="marcarRealizada(${note.id})" type="checkbox" ${note.realizada ? "checked" : ""} class="chekear">
+                <label for="chekear">${note.titulo}</label>
+            </div>
+            <div class="card-body">
+                <p class="card-text">${note.texto}</p>
+            </div>
+            <button type="button" class="btn btn-danger borrarN" onclick="borrarNota(${note.id})">Borrar</button>
+        `;
+        container.appendChild(noteElement);
+    });
+
+    if (notas.length === 0) {
+        palabra.textContent = "NO HAY CARTAS PARA MOSTRAR";
+        container.appendChild(palabra);
+    }
+}
+
+document.querySelector(".buscar").addEventListener('input', applyFilters);
+document.querySelector(".realizadas").addEventListener('change', applyFilters);
+
+renderNotes(notas);
