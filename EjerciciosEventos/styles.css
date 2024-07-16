@@ -9,6 +9,7 @@ section{
 h3{
     margin: 1rem;
 }
+
 .valores{
     width: 40vw;
     margin: 1rem;
@@ -88,4 +89,7 @@ h3{
     display: flex;
     flex-direction: row;
     gap: 3.5rem;
+}
+.tachar{
+    text-decoration: line-through;
 }

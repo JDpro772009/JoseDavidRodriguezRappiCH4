@@ -57,22 +57,22 @@ function crearNota() {
     carta.setAttribute("class", "card text-center cards");
     carta.innerHTML = `<div class="card-header">
                        <input onClick="marcarRealizada(${nuevaNota.id})" type="checkbox" ${nuevaNota.realizada ? "checked" : ""} class="chekear">
-                      <label for="chekear">${nuevaNota.titulo}</label>
+                      <label for="chekear" class="tex1 ${nuevaNota.realizada ? 'text-decoration-line-through':''}"  ${nuevaNota.realizada ? 'text-decoration-line-through':''}>${nuevaNota.titulo}</label>
                     </div>
                     <div class="card-body">
-                      <p class="card-text">${nuevaNota.texto}</p>
+                      <p class="card-text tex2 ${nuevaNota.realizada ? 'text-decoration-line-through':''}">${nuevaNota.texto}</p>
                     </div>
                       <button type="button" class="btn btn-danger borrarN" onclick="borrarNota(${nuevaNota.id})">Borrar</button>`;
                       
     cajaP.appendChild(carta);
 
     idGlobal++;
-    
+
     borrarText()
-    
-
     cajaP.removeChild(palabra);
-
+    
+  
+    
 }
 
 
@@ -87,10 +87,15 @@ let agregarNota = () => {
 
         crearNota();
 
+
     }
+    
+
    
    
 };
+
+
 
 
 function borrarNota(id) {
@@ -103,6 +108,7 @@ let borrarText = () => {
     texto.value = "";
 };
 
+
 borrar.addEventListener("click", borrarText);
 guardar.addEventListener("click", agregarNota);
 
@@ -110,7 +116,9 @@ function marcarRealizada(id) {
     let note = notas.find(note => note.id === id);
     if (note) {
         note.realizada = !note.realizada;
+
     }
+    
     applyFilters();
 }
 
@@ -146,10 +154,10 @@ function renderNotes(notas) {
         noteElement.innerHTML = `
             <div class="card-header">
                 <input onClick="marcarRealizada(${note.id})" type="checkbox" ${note.realizada ? "checked" : ""} class="chekear">
-                <label for="chekear">${note.titulo}</label>
+                <label for="chekear" class="${note.realizada ? 'text-decoration-line-through':''}">${note.titulo}</label>
             </div>
             <div class="card-body">
-                <p class="card-text">${note.texto}</p>
+                <p class="card-text ${note.realizada ? 'text-decoration-line-through':''}">${note.texto}</p>
             </div>
             <button type="button" class="btn btn-danger borrarN" onclick="borrarNota(${note.id})">Borrar</button>
         `;
