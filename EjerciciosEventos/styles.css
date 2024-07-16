@@ -13,30 +13,30 @@ h3{
 .valores{
     width: 40vw;
     margin: 1rem;
+    min-width: 200px;
 }
-.valoresP{
-    width: 20vw;
-    margin: 1rem;
-}
+
 .formulario{
     display: flex;
-    flex-flow: column wrap;
-    height: 55vh;
+    flex-flow: row wrap;
+    min-height: 55vh;
     width: 75vw;
     justify-content: center;
 
 }
-.medir{
-    width: 10rem;
-    margin-left: 4rem;
+.valoresP{
+    margin: 1rem;
 }
+.medir{
+    max-width: 10rem;
+    height: 40px;
+    margin-top: 3rem;
+}
+
 .label{
-    height: 50vh;
-    width: 60px;
     margin-top: 5px;
-    display:flex;
     align-items: center;
-    
+    width: 40vw;
 }
 .ult{
     margin-bottom: 20px;
@@ -46,8 +46,8 @@ h3{
     padding: 1rem;
     background-color: rgb(231, 240, 249);
     display: flex;
-    flex-flow: column wrap;
-    height: 70vh;
+    flex-flow: row wrap;
+    min-height: 70vh;
     justify-content: center;
 }
 .area{
@@ -56,12 +56,21 @@ h3{
     max-height: 15rem;
 }
 .nombre{
-    width: 50rem;
+    max-width: 50rem;
     margin-bottom: 15px;
+    min-width: 200px;
+}
+.area{
+    min-width: 200px;
+    max-width: 50rem;
 }
 .tarjetas>button{
-    width: 20rem;
+    width: 26rem;
     margin: 15px;
+    height: 2.5rem;
+}
+.tarjetas>h4{
+    width: 100%;
 }
 .cartas{
     background-color: rgb(224, 237, 249);
@@ -81,7 +90,7 @@ h3{
 
 }
 .buscar{
-    width: 20rem;
+    width: 15rem;
     margin: 1rem;
 }
 
