@@ -67,8 +67,14 @@ function crearNota() {
     cajaP.appendChild(carta);
 
     idGlobal++;
+    
+    borrarText()
+    
+
     cajaP.removeChild(palabra);
+
 }
+
 
 let agregarNota = () => {
     if (titulo.value.trim() === "") {
@@ -78,10 +84,14 @@ let agregarNota = () => {
         texto.value = "";
         texto.setAttribute("placeholder", "No has agregado nada en este campo");
     } else {
+
         crearNota();
-        borrarText();
+
     }
+   
+   
 };
+
 
 function borrarNota(id) {
     notas = notas.filter(note => note.id !== id);
