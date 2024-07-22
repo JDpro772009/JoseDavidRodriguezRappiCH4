@@ -203,11 +203,11 @@ const data = {
 
     carta.innerHTML = `<img src=${data.events[i].image} class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">${data.events[i].name}</h5>
-                <p class="card-text">${data.events[i].description}</p>
+                <h5 class="card-title titulos">${data.events[i].name}</h5>
+                <p class="card-text descripciones">${data.events[i].description}</p>
                 <div class="precio d-flex justify-content-around flex-wrap">
-                  <h4 class="valor">${data.events[i].price}</h4>
-                <a href="./Details.html" class="btn btn-primary">Details</a>
+                  <h4 class="valor">${data.events[i].price + "$"}</h4>
+                <a href="./Details.html?name=${data.events[i].name}&description=${data.events[i].description}&date=${data.events[i].date}&category=${data.events[i].category}&place=${data.events[i].place}&capacity=${data.events[i].capacity}&assistance=${data.events[i].assistance}&price=${data.events[i].price}&image=${data.events[i].image}&currentDate=${data.currentDate}&estimate=${data.events[i].estimate}" class="btn btn-primary">Details</a>
                 </div>
               </div>`
 
@@ -215,3 +215,224 @@ const data = {
 
 
  }
+
+
+ crearChecks()
+
+
+
+ function crearChecks(){
+  let categorias = document.querySelector(".categorias")
+  let arrCt = []
+  for(let i = 0; i < data.events.length; i++){
+
+    arrCt.push(data.events[i].category) 
+    
+  }
+  arrayDef = [] 
+  for(let i = 0; i < arrCt.length;i++){
+    if(arrCt[i] == arrCt[i+1]){
+      arrayDef.push(arrCt[i])
+    }
+  }
+  for(let i = 0; i< arrayDef.length;i++){
+    let check = document.createElement("div")
+    check.innerHTML = `<input class="form-check-input" type="checkbox" value="" id="defaultCheck${i}" onclick="filtrarChecks(${i})">
+            <label class="form-check-label" for="defaultCheck${i}">
+              ${arrayDef[i]}
+            </label>`
+      categorias.appendChild(check)
+  }
+
+ }
+ let arrFilt = []
+ let arrObjetos = []
+
+ function filtrarChecks(num){
+  let caja = document.querySelector(".agregar")
+  caja.innerHTML = ""
+
+   let check = document.getElementById(`defaultCheck${num}`)
+
+   if(check.checked){
+
+
+    for(let i = 0; i < data.events.length; i++){
+
+      if(arrayDef[num] == data.events[i].category){
+        arrObjetos.push(data.events[i])
+
+        console.log(arrObjetos)
+
+      }
+     }
+
+  }else{
+    for(let i = 0;i<arrObjetos.length;i++){
+      if(arrObjetos[i].category.includes(arrayDef[num])){
+        arrObjetos.splice(i,2)
+        
+      }
+    }
+    console.log(arrObjetos)
+  }
+
+
+  if(check.checked){
+
+
+    for(let i = 0; i < data.events.length; i++){
+
+      if(arrayDef[num] == data.events[i].category){
+        arrFilt.push(arrayDef[num])
+
+        console.log(arrFilt)
+
+        
+        for(let j = 0; j < arrFilt.length;j++){
+          for(let i = 0; i < data.events.length;i++){
+            if(data.events[i].category == arrFilt[j]){
+              
+              let carta = document.createElement("div")
+              carta.setAttribute("class", "card anim")
+          
+              carta.innerHTML = `<img src=${data.events[i].image} class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">${data.events[i].name}</h5>
+                          <p class="card-text">${data.events[i].description}</p>
+                          <div class="precio d-flex justify-content-around flex-wrap">
+                            <h4 class="valor">${data.events[i].price + "$"}</h4>
+                          <a href="./Details.html?name=${data.events[i].name}&description=${data.events[i].description}&date=${data.events[i].date}&category=${data.events[i].category}&place=${data.events[i].place}&capacity=${data.events[i].capacity}&assistance=${data.events[i].assistance}&price=${data.events[i].price}&image=${data.events[i].image}&currentDate=${data.currentDate}&estimate=${data.events[i].estimate}" class="btn btn-primary">Details</a>
+                          </div>
+                        </div>`
+          
+              caja.appendChild(carta)
+
+            }
+          }
+        }
+        
+
+        break
+      }
+     }
+
+  }else{
+    
+    let numero = arrFilt.indexOf(arrayDef[num])
+    arrFilt.splice(numero,1)
+    console.log(arrFilt)
+    for(let j = 0; j < arrFilt.length;j++){
+      for(let i = 0; i < data.events.length;i++){
+        if(data.events[i].category == arrFilt[j]){
+          
+          let carta = document.createElement("div")
+          carta.setAttribute("class", "card anim")
+      
+          carta.innerHTML = `<img src=${data.events[i].image} class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">${data.events[i].name}</h5>
+                      <p class="card-text">${data.events[i].description}</p>
+                      <div class="precio d-flex justify-content-around flex-wrap">
+                        <h4 class="valor">${data.events[i].price + "$"}</h4>
+                      <a href="./Details.html?name=${data.events[i].name}&description=${data.events[i].description}&date=${data.events[i].date}&category=${data.events[i].category}&place=${data.events[i].place}&capacity=${data.events[i].capacity}&assistance=${data.events[i].assistance}&price=${data.events[i].price}&image=${data.events[i].image}&currentDate=${data.currentDate}&estimate=${data.events[i].estimate}" class="btn btn-primary">Details</a>
+                      </div>
+                    </div>`
+      
+          caja.appendChild(carta)
+
+        }
+      }
+    }
+    if(arrFilt.length == 0){
+      
+ for(let i = 0; i < data.events.length; i++){
+  let caja = document.querySelector(".agregar")
+
+  let carta = document.createElement("div")
+  carta.setAttribute("class", "card anim")
+
+  carta.innerHTML = `<img src=${data.events[i].image} class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title titulos">${data.events[i].name}</h5>
+              <p class="card-text descripciones">${data.events[i].description}</p>
+              <div class="precio d-flex justify-content-around flex-wrap">
+                <h4 class="valor">${data.events[i].price + "$"}</h4>
+              <a href="./Details.html?name=${data.events[i].name}&description=${data.events[i].description}&date=${data.events[i].date}&category=${data.events[i].category}&place=${data.events[i].place}&capacity=${data.events[i].capacity}&assistance=${data.events[i].assistance}&price=${data.events[i].price}&image=${data.events[i].image}&currentDate=${data.currentDate}&estimate=${data.events[i].estimate}" class="btn btn-primary">Details</a>
+              </div>
+            </div>`
+
+  caja.appendChild(carta)
+
+
+}
+    }
+  }
+   
+ }
+
+  
+ let buscar = document.querySelector(".buscar")
+
+function filtrarTexto(){
+  let caja = document.querySelector(".agregar")
+  caja.innerHTML = ""
+if(arrFilt.length == 0){
+    for(let i = 0; i < data.events.length;i++){
+      if(data.events[i].name.toLowerCase().includes(buscar.value.toLowerCase()) || data.events[i].description.toLowerCase().includes(buscar.value.toLowerCase())){
+      
+        let carta = document.createElement("div")
+        carta.setAttribute("class", "card anim")
+      
+        carta.innerHTML = `<img src=${data.events[i].image} class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title titulos">${data.events[i].name}</h5>
+                    <p class="card-text descripciones">${data.events[i].description}</p>
+                    <div class="precio d-flex justify-content-around flex-wrap">
+                      <h4 class="valor">${data.events[i].price + "$"}</h4>
+                    <a href="./Details.html?name=${data.events[i].name}&description=${data.events[i].description}&date=${data.events[i].date}&category=${data.events[i].category}&place=${data.events[i].place}&capacity=${data.events[i].capacity}&assistance=${data.events[i].assistance}&price=${data.events[i].price}&image=${data.events[i].image}&currentDate=${data.currentDate}&estimate=${data.events[i].estimate}" class="btn btn-primary">Details</a>
+                    </div>
+                  </div>`
+      
+        caja.appendChild(carta)
+      }
+      
+      }
+      if(caja.innerHTML == ""){
+        let nada = document.createElement("h4")
+        nada.textContent = "Lo sentimos, no hay cartas para mostrar :["
+        caja.appendChild(nada)
+      }
+}else{
+  for(let i = 0; i < arrObjetos.length;i++){
+    if(arrObjetos[i].name.toLowerCase().includes(buscar.value.toLowerCase()) || arrObjetos[i].description.toLowerCase().includes(buscar.value.toLowerCase())){
+    
+      let carta = document.createElement("div")
+      carta.setAttribute("class", "card anim")
+    
+      carta.innerHTML = `<img src=${arrObjetos[i].image} class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title titulos">${arrObjetos[i].name}</h5>
+                  <p class="card-text descripciones">${arrObjetos[i].description}</p>
+                  <div class="precio d-flex justify-content-around flex-wrap">
+                    <h4 class="valor">${arrObjetos[i].price + "$"}</h4>
+                  <a href="./Details.html?name=${data.events[i].name}&description=${data.events[i].description}&date=${data.events[i].date}&category=${data.events[i].category}&place=${data.events[i].place}&capacity=${data.events[i].capacity}&assistance=${data.events[i].assistance}&price=${data.events[i].price}&image=${data.events[i].image}&currentDate=${data.currentDate}&estimate=${data.events[i].estimate}" class="btn btn-primary">Details</a>
+                  </div>
+                </div>`
+    
+      caja.appendChild(carta)
+    }
+    }
+    if(caja.innerHTML == ""){
+      let nada = document.createElement("h4")
+      nada.textContent = "Lo sentimos, no hay cartas para mostrar :["
+      caja.appendChild(nada)
+    }
+
+}
+
+
+}
+
+buscar.addEventListener("keyup", filtrarTexto)
+
