@@ -1,0 +1,57 @@
+nav{
+    position: fixed;
+}
+.caja{
+    display: flex;
+    min-width: 95%;
+    flex-flow: row wrap;
+    padding: 1.5rem;
+    justify-content: center;
+    border-radius: 10px;
+    margin-top: 5rem;
+    gap: 1.5rem;
+    background-color: aliceblue;
+    box-shadow: 0px 30px 100px 1px rgba(137, 137, 137, 0.351);
+    
+}
+.caja img{
+   object-fit: cover;
+   max-width: 400px;
+   min-width: 5rem;
+   max-height: 100%;
+}
+.cajaP1{
+    max-width: 45rem;
+    text-align:justify;
+
+}
+.cartas{
+    margin: 20px;
+    background-color: aliceblue;
+    padding: 1rem;
+    display: flex;
+    flex-flow: row  wrap;
+    gap: 0.5rem;
+}
+.carta{
+    width: 18rem;
+}
+.links{
+
+    width: 700px;
+    display: flex;
+
+    flex-flow: row-reverse wrap;
+}
+.link{
+    border-right:2px solid rgba(165, 42, 42, 0.477) ;
+    border-left:2px solid rgba(165, 42, 42, 0.477) ;
+    padding: 1rem;
+}
+.tabla,td,th{
+    border: 2px solid black;
+    padding: 10px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
