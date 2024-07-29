@@ -2,30 +2,30 @@
 let cajaTitulo = document.querySelector(".caja")
 
 
-// fetch('https://api-colombia.com/api/v1/CountryColombia')
-//     .then (response=>response.json())
-//     .then (json=>targetaPrincipal(json)
+fetch('https://api-colombia.com/api/v1/Country/Colombia')
+    .then (response=>response.json())
+    .then (json=>targetaPrincipal(json)
 
-// )
+)
 
-// function targetaPrincipal(text){
-//     let testo = document.createElement("div")
-//     testo.setAttribute("class", "cajaP1")
-//     testo.innerHTML=`  <h2>${text[0].name}</h2>
-//                        <p>${text[0].description}</p>`
-    
-//     let img = document.createElement("img")
-//     img.setAttribute("src", text[0].flags[0])
-//     cajaTitulo.appendChild(testo)
-//     cajaTitulo.appendChild(img)
+function targetaPrincipal(text){
+    let testo = document.createElement("div")
+    testo.setAttribute("class", "cajaP1")
+    testo.innerHTML=`  <h2>${text["name"]}</h2>
+                       <p>${text["description"]}</p>`
+   
+    let img = document.createElement("img")
+    img.setAttribute("src", text["flags"][1])
+    cajaTitulo.appendChild(testo)
+    cajaTitulo.appendChild(img)
 
-//     // cajaTitulo.innerHTML = `
-//     //         <div class="cajaP1">
-//     //             <h2>${text[0].name}</h2>
-//     //             <p>${text[0].description}</p>
-//     //         </div>
-//     //         <img src="${text[0].flags[0]}" alt="">`
-// }
+     cajaTitulo.innerHTML = `
+        <div class="cajaP1">
+            <h2>${text["name"]}</h2>
+            <p>${text["description"]}</p>
+        </div>
+        <img src="${text["flags"][1]}" alt="">`
+}
 
 fetch('https://api-colombia.com/api/v1/Department')
     .then(response => response.json())
