@@ -54,4 +54,17 @@ nav{
     border-collapse: collapse;
     text-align: center;
 }
-
+.anim{
+transition: all 0.4s;
+}
+.anim:hover{
+    transform: translateY(-10px);
+    box-shadow: 0px 5px 20px 1px rgb(84, 158, 228);
+}
+.label-esp{
+    font-size: 8px;
+    position: absolute;
+}
+.numero{
+    width: 215px;
+}

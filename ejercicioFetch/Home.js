@@ -46,7 +46,7 @@ function pintarCards(valor){
         for(let i = 0; i < array.length; i++){
             if(array[i].name.toLowerCase().includes(buscar) && array[i].municipalities <= maxMunicipios){
                 let cajita = document.createElement("div")
-                cajita.setAttribute("class", "card carta")
+                cajita.setAttribute("class", "card carta anim")
                 cajita.innerHTML = `<div class="card-body">
                     <h5 class="card-title">${array[i].name}</h5>
                     <p class="card-text">Municipios: ${array[i].municipalities}</p>
@@ -76,7 +76,7 @@ function pintarCards(valor){
             if(valor[i].description.includes("\"")){
                 let descp = valor[i].description.replaceAll("\"", " ")
                 let cajita = document.createElement("div")
-            cajita.setAttribute("class", "card carta")
+            cajita.setAttribute("class", "card carta anim")
             cajita.innerHTML = `<div class="card-body">
                   <h5 class="card-title">${array[i].name}</h5>
 
@@ -88,7 +88,7 @@ function pintarCards(valor){
             cajaCartas.appendChild(cajita)
             }else{
             let cajita = document.createElement("div")
-            cajita.setAttribute("class", "card carta")
+            cajita.setAttribute("class", "card carta anim")
             cajita.innerHTML = `<div class="card-body">
                   <h5 class="card-title">${array[i].name}</h5>
 

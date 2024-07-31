@@ -24,7 +24,7 @@ cajaP1.innerHTML = `<h2>${url.get("nombre")}</h2>
                     });  
                         for(let i = 0; i<array.length;i++){
                             let cajita = document.createElement("div")
-                            cajita.setAttribute("class", "card carta")
+                            cajita.setAttribute("class", "card carta anim")
                             cajita.innerHTML = `<div class="card-body">
                                   <h5 class="card-title">${array[i].name}</h5>
                                   <h6 class="card-subtitle mb-2 text-body-secondary valCiudad">Ciudad</h6>
@@ -51,14 +51,12 @@ cajaP1.innerHTML = `<h2>${url.get("nombre")}</h2>
                         for(let i = 0; i < valor.length;i++){
                             if( valor[i].departmentId == url.get("id") && valor[i].name != valor[i+1].name){
                                 let cajita = document.createElement("div")
-                            cajita.setAttribute("class", "card carta")
+                            cajita.setAttribute("class", "card carta anim")
                             cajita.innerHTML = `<div class="card-body">
                                   <h5 class="card-title">${valor[i].name}</h5>
                                   <h6 class="card-subtitle mb-2 text-body-secondary valNat">Area Natural</h6>
                                 </div>`
                             cajaCartas.appendChild(cajita)
-                            }else{
-                                console.log("no hay nada");
                             }
                         }
                     
@@ -78,4 +76,39 @@ cajaP1.innerHTML = `<h2>${url.get("nombre")}</h2>
                         }
                     });
                 });
+                
+    let checkCiudad = document.querySelector(".ciudad")
+    let checkNat = document.querySelector(".areaNat")
+    let buscador = document.querySelector(".buscar")
+    function checks(){
+        let caja = document.querySelector(".cartas")
+        caja.innerHTML = ""
+        if(checkCiudad.checked){
+            buscador.value = ""
+            fetch(ciudades)
+            .then(response => response.json())
+            .then(json => pintarCiudades(json))
+            
+        }
 
+        if(checkNat.checked){
+            buscador.value = ""
+            fetch(areasNat)
+            .then(response => response.json())
+            .then(json => pintarNat(json))
+        }
+        
+        if(checkCiudad.checked != true && checkNat.checked != true){
+            buscador.value = ""
+            fetch(ciudades)
+            .then(response => response.json())
+            .then(json => pintarCiudades(json))
+
+            fetch(areasNat)
+            .then(response => response.json())
+            .then(json => pintarNat(json))
+        }
+    }
+
+    checkCiudad.addEventListener("click", checks)
+    checkNat.addEventListener("click", checks)
