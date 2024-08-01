@@ -7,9 +7,9 @@ let areasNat = `https://api-colombia.com/api/v1/NaturalArea`
 
 cajaP1.innerHTML = `<h2>${url.get("nombre")}</h2>
                 <p>${url.get("desc")}</p>
-                <h4>Municipios:${url.get("municip")}</h4>
-                <h4>Superficie:${url.get("surface")}</h4>
-                <h4>Poblacion:${url.get("population")}</h4>`
+                <h4>Municipios: ${url.get("municip")}</h4>
+                <h4>Superficie: ${url.get("surface")} Km</h4>
+                <h4>Poblacion: ${url.get("population")}</h4>`
 
                 fetch(ciudades)
                     .then(response => response.json())
