@@ -1,10 +1,12 @@
 let cajaP1 = document.querySelector(".cajaP1")
+let caja = document.querySelector(".caja")
 let url = new URLSearchParams(window.location.search)
 let ciudades = `https://api-colombia.com/api/v1/Department/${url.get("id")}/cities`
 let areasNat = `https://api-colombia.com/api/v1/NaturalArea`
 
-
-
+let imagen = document.createElement("img")
+imagen.setAttribute("src", `${url.get("imagen")}`)
+caja.appendChild(imagen)
 cajaP1.innerHTML = `<h2>${url.get("nombre")}</h2>
                 <p>${url.get("desc")}</p>
                 <h4>Municipios: ${url.get("municip")}</h4>
