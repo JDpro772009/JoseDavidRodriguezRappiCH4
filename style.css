@@ -45,6 +45,7 @@
 .card-text{
     color: black;
     height: 65px;
+    font-size: 0.9rem;
 }
 .anim{
     transition: all .3s;
